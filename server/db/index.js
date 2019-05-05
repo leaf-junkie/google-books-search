@@ -1,0 +1,21 @@
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+let MONGO_URL;
+const MONGO_LOCAL_URL = "mongod://localhost/google-books-search";
+
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI, { useNewParser: true });
+    MONGO_URL = process.env.MONGODB_URI;
+} else {
+    mongoose.connect(MONGO_LOCAL_URL, { useNewUrlParser: true });
+    MONGO_URL = MONGO_LOCAL_URL;
+}
+
+const db = mongoose.connection;
+db.on("error", err => {
+    console.log(`Error connecting to the database: ${error}`);
+});
+
+db.once("open", () => {
+    console.log(`Successfully connected to MongoDB: ${MONGO_URL}`);
+})
