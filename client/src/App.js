@@ -6,6 +6,15 @@ import Book from "./components/Book/index";
 import Footer from "./components/Footer/index";
 
 class App extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      saved: false
+    }
+  }
+
   render() {
     return (
       <div className="App">
