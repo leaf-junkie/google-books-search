@@ -23,8 +23,9 @@ class SearchPage extends Component {
 
     // Load books based on search result
     loadBooks = () => {
-        API.getBooks()
-        .then(res => 
+        API.search()
+        .then(res => {
+            console.log(res)
             this.setState({ 
                 books: res.data.books,
                 title: "",
@@ -32,9 +33,10 @@ class SearchPage extends Component {
                 description: "",
                 image: "",
                 link: ""
-            })
-        )
-        .catch(err => console.log(err));
+            })}
+
+            )
+            .catch(err => console.log(err));
     }
 
     // Remove book based on id

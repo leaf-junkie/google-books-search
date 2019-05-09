@@ -1,37 +1,29 @@
-const ObjectId = require("mongoose").Types.ObjectId;
-const db = require("../models");
+// const ObjectId = require("mongoose").Types.ObjectId;
+const db = require("../models/book");
+const mongoose = require("mongoose");
 
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
-    if (req.user) {
-      db.User
-        .find({ _id: req.user._id })
-        .populate({ path: "books", options: { sort: { 'date': -1 } } })
-        .then(users => {
-          res.json({ books: users[0].books });
+    console.log("hitting books controller")
+      db
+        .find({ })
+        .then(books => {
+          res.json({ books });
         })
         .catch(err => res.status(422).json(err));
-    } else {
-      return res.json({ books: null });
-    }
   },
   findById: function(req, res) {
-    if (req.user) {
-      db.User
-        .find({ _id: req.user._id })
-        .populate("books")
-        .then(users => {
-          const book = users[0].books.filter(b => b._id.toString() === req.params.id);
+      db
+        .find({ })
+        .then(books => {
+          const book = books.filter(b => b._id.toString() === req.params.id);
           res.json({ book: book[0] });
         })
         .catch(err => res.status(422).json(err));
-    } else {
-      return res.json({ book: null });
-    }
   },
   create: function(req, res) {
-    db.Book
+    db
       .create(req.body)
       .then(dbBook => {
         return db.User.findOneAndUpdate({ _id: req.user._id }, { $push: { books: dbBook._id } }, { new: true });
@@ -42,7 +34,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Book
+    db
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => {
         console.log(dbModel);

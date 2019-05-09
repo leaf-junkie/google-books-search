@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bookController = require("../../controllers/bookController");
 
 // Route to all books
-router.route("/")
+router.route("/books")
     .get(bookController.findAll)
     .post(bookController.create);
 

@@ -15,7 +15,7 @@ function Searchbar(props) {
                     />
                     <div className="input-group-append">
                         <button 
-                        className="btn btn-outline-secondary" 
+                        className="btn btn-primary" 
                         type="submit" 
                         id="button-addon2"
                         onClick={ props.searchBooks }
