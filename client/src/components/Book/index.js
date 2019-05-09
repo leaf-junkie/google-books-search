@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import style from "./style.css";
 
-const Book = (props) => {
+function Book(props) {
     return (
         <div className="book">
             <div class="card mb-3" style="max-width: 540px;">
@@ -14,7 +15,9 @@ const Book = (props) => {
                         <h5 class="card-title">{ props.title }</h5>
                         <p class="card-text"><small class="text-muted">{ author }</small></p>
                         <p class="card-text">{ props.description }</p>
-                        <p class="card-text"><small class="text-muted">{ link }</small></p>
+                        <Link to={"/books/" + book._id}>
+                            <p class="card-text"><small class="text-muted">{book.title} by {book.author}</small></p>
+                        </Link>
                     </div>
                     </div>
                 </div>

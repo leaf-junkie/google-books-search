@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-// import logo from "./logo.svg";
+import { Route, Switch } from 'react-router-dom';
+import Nav from "./components/Nav";
+import SearchPage from "./components/SearchPage";
+import SavedPage from "./components/SavedPage";
+import Footer from "./components/Footer";
 import "./App.css";
-import Jumbotron from "./components/Jumbotron/index";
-import Book from "./components/Book/index";
-import Footer from "./components/Footer/index";
 
 class App extends Component {
 
@@ -18,9 +19,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Jumbotron/>
-        <Book/>
-        <Footer/>          
+        <Nav/>
+          <div className="body">
+            <Switch>
+              <Route exact path="/" component={() => <SearchPage/>} />
+              <Route exact path="/books" component={() => <SavedPage/> } />
+            </Switch>
+          </div>
+        <Footer/>
       </div>
     );
   }
