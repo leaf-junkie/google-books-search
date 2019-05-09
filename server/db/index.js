@@ -19,3 +19,5 @@ db.on("error", err => {
 db.once("open", () => {
     console.log(`Successfully connected to MongoDB: ${MONGO_URL}`);
 })
+
+module.exports = db;

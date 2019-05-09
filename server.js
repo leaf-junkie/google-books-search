@@ -14,19 +14,10 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-// API routes
-// router.post("/api/books", () => {
-//   db.create(req.body).then(() => {
-//     console.log(res);
-//     res.json(true);
-//   }).catch((err) => {
-//     res.json(err);
-//   })
-// });
-
+// Connect to database
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooksearch");
 
+// Connect to server
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server is now on port ${PORT}!`);
 });
