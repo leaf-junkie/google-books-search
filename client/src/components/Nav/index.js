@@ -2,10 +2,10 @@ import React from "react";
 
 const Nav = () => {
     return (
-        <nav class="nav">
+        <nav className="nav">
             <p>Google Books</p>
-            <a class="nav-link" href="/">Search</a>
-            <a class="nav-link" href="/saved">Saved</a>
+            <a className="nav-link" href="/">Search</a>
+            <a className="nav-link" href="/saved">Saved</a>
         </nav>
     );
 

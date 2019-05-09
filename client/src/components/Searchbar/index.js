@@ -4,23 +4,23 @@ function Searchbar(props) {
     return (
         <div className="searchbar">
             <form>
-                <div class="input-group mb-3">
+                <div className="input-group mb-3">
                     <input 
                     type="text" 
-                    class="form-control" 
-                    placeholder="Search" 
+                    className="form-control" 
+                    placeholder="Search books" 
                     aria-describedby="button-addon2"
                     onChange={ props.handleInputChange }
                     value={ props.query }
                     />
-                    <div class="input-group-append">
+                    <div className="input-group-append">
                         <button 
-                        class="btn btn-outline-secondary" 
+                        className="btn btn-outline-secondary" 
                         type="submit" 
                         id="button-addon2"
                         onClick={ props.searchBooks }
                         >
-                        Button
+                        Search
                         </button>
                     </div>
                 </div>

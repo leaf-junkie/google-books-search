@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import Nav from "../Nav";
+import GoogleAPI from "../../utils/GoogleBooksAPI";
 import Jumbotron from "../Jumbotron";
 import Searchbar from "../Searchbar";
 import { List, ListItem } from "../List";
@@ -67,10 +67,29 @@ class SearchPage extends Component {
         }
     }
 
+    searchBook = event => {
+        event.preventDefault()
+        const searchQuery = this.state.query
+        GoogleAPI.search(searchQuery).then(res => {
+            const searchResults = []
+            for (let i = 0; i < res.data.items.length; i++) {
+                let book = {}
+                book.author = res.data.items[i].volumeInfo.authors[0]
+                book.link = res.data.items[i].volumeInfo.infoLink
+                book.title = res.data.items[i].volumeInfo.title
+                book.image = (res.data.items[i].volumeInfo.imageLinks && res.data.items[i].volumeInfo.imageLinks.thumbnail) 
+                ? res.data.items[i].volumeInfo.imageLinks.thumbnail 
+                : 'http://placehold.it/300x300'
+                book.description = res.data.items[i].volumeInfo.description
+                searchResults.push(book)
+            }
+            this.setState({books: searchResults})
+        }).catch(err => console.log(err))
+    }
+
     render() {
         return(
             <div className="container">
-                <Nav/>
                 <Jumbotron/>
                 <Searchbar/>
                 {this.state.books.length ? (

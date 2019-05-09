@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav/>
-          <div className="body">
+          <div className="container-body">
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={() => <SearchPage/>} />

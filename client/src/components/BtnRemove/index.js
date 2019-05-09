@@ -5,7 +5,7 @@ const BtnRemove = () => {
         <div className="btnRemove">
             <button 
             type="button" 
-            class="btn btn-outline-danger"
+            className="btn btn-outline-danger"
             >
             Remove
             </button>

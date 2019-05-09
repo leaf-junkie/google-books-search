@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import Nav from "../Nav";
 import Jumbotron from "../Jumbotron";
 import { List, ListItem } from "../List";
 import Book from "../Book";
@@ -69,7 +68,6 @@ class SavedPage extends Component {
     render() {
         return(
             <div className="container">
-                <Nav/>
                 <Jumbotron/>
                 {this.state.books.length ? (
                     <List>

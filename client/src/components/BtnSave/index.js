@@ -5,7 +5,7 @@ const BtnSave = (props) => {
         <div className="btnSave">
             <button 
             type="button" 
-            class={`btn btn-success ${props["data-value"]}`}
+            className={`btn btn-success ${props["data-value"]}`}
             onClick={props.onClick}
             {...props}
             >
