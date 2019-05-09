@@ -13,10 +13,10 @@ function Book(props) {
                     <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{ props.title }</h5>
-                        <p class="card-text"><small class="text-muted">{ author }</small></p>
+                        <p class="card-text"><small class="text-muted">{ props.author }</small></p>
                         <p class="card-text">{ props.description }</p>
-                        <Link to={"/books/" + book._id}>
-                            <p class="card-text"><small class="text-muted">{book.title} by {book.author}</small></p>
+                        <Link to={"/books/" + props._id}>
+                            <p class="card-text"><small class="text-muted">{props.title} by {props.author}</small></p>
                         </Link>
                     </div>
                     </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../../utils/API";
 import Nav from "../Nav";
 import Jumbotron from "../Jumbotron";
 import Searchbar from "../Searchbar";
@@ -6,7 +7,7 @@ import { List, ListItem } from "../List";
 import Book from "../Book";
 import BtnSave from "../BtnSave";
 
-class Books extends Component {
+class SearchPage extends Component {
     state = {
         books: [],
         title: "",
