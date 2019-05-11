@@ -5,7 +5,7 @@ const Nav = () => {
         <nav className="nav">
             <p>Google Books</p>
             <a className="nav-link" href="/">Search</a>
-            <a className="nav-link" href="/saved">Saved</a>
+            <a className="nav-link" href="/books">Saved</a>
         </nav>
     );
 

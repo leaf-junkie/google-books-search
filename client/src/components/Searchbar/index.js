@@ -6,6 +6,7 @@ function Searchbar(props) {
             <form>
                 <div className="input-group mb-3">
                     <input 
+                    name="query"
                     type="text" 
                     className="form-control" 
                     placeholder="Search books" 
@@ -18,7 +19,7 @@ function Searchbar(props) {
                         className="btn btn-primary" 
                         type="submit" 
                         id="button-addon2"
-                        onClick={ props.searchBooks }
+                        onClick={ props.searchBook }
                         >
                         Search
                         </button>

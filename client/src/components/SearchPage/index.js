@@ -3,107 +3,80 @@ import API from "../../utils/API";
 import GoogleAPI from "../../utils/GoogleBooksAPI";
 import Jumbotron from "../Jumbotron";
 import Searchbar from "../Searchbar";
-import { List, ListItem } from "../List";
-import Book from "../Book";
-import BtnSave from "../BtnSave";
+import BookList from "../BookList";
 
 class SearchPage extends Component {
-    state = {
-        books: [],
-        title: "",
-        author: "",
-        description: "",
-        image: "",
-        link: ""
-    };
-
-    componentDidMount() {
-        this.loadBooks();
-    }
-
-    // Load books based on search result
-    loadBooks = () => {
-        API.search()
-        .then(res => {
-            console.log(res)
-            this.setState({ 
-                books: res.data.books,
-                title: "",
-                author: "",
-                description: "",
-                image: "",
-                link: ""
-            })}
-
-            )
-            .catch(err => console.log(err));
-    }
-
-    // Remove book based on id
-    removeBook = (id) => {
-        API.removeBook(id)
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: []
+        };
     }
 
     handleInputChange = (event) => {
         const { name, value } = event.target;
+        console.log(`Name: ${name} Value: ${value}`)
         this.setState({
             [name]: value
         });
     }
 
     // Save book
-    handleFormSubmit = (event) => {
+    saveBook = (data, event) => {
         event.preventDefault();
-        if (this.state.title && this.state.author) {
-            API.saveBook({
-                title: this.state.title,
-                author: this.state.author,
-                description: this.state.description,
-                image: this.state.image,
-                link: this.state.link
+        console.log("Save book");
+        console.log(this.state);
+        console.log(data);
+        API.saveBook({
+            title: data.title,
+            author: data.author,
+            description: data.description,
+            image: data.image,
+            link: data.link,
+            id: data.id
+        })
+        .then(res => 
+            this.setState({
+                books: this.state.books.filter(b => b.id != data.id)
             })
-            .then(res => this.loadBooks())
-            .catch(err => console.log(err));
-        }
+        )
+        .catch(err => console.log(err));
     }
 
     searchBook = event => {
         event.preventDefault()
         const searchQuery = this.state.query
+        console.log(searchQuery);
         GoogleAPI.search(searchQuery).then(res => {
             const searchResults = []
+            let items = res.data.items || [];
             for (let i = 0; i < res.data.items.length; i++) {
                 let book = {}
-                book.author = res.data.items[i].volumeInfo.authors[0]
-                book.link = res.data.items[i].volumeInfo.infoLink
-                book.title = res.data.items[i].volumeInfo.title
-                book.image = (res.data.items[i].volumeInfo.imageLinks && res.data.items[i].volumeInfo.imageLinks.thumbnail) 
-                ? res.data.items[i].volumeInfo.imageLinks.thumbnail 
+                book.author = items[i].volumeInfo.authors ? items[i].volumeInfo.authors[0] : "Unknown";
+                book.link = items[i].volumeInfo.infoLink
+                book.title = items[i].volumeInfo.title
+                book.image = (items[i].volumeInfo.imageLinks && items[i].volumeInfo.imageLinks.thumbnail) 
+                ? items[i].volumeInfo.imageLinks.thumbnail 
                 : 'http://placehold.it/300x300'
-                book.description = res.data.items[i].volumeInfo.description
+                book.description = items[i].volumeInfo.description
+                book.id = items[i].id;
                 searchResults.push(book)
             }
             this.setState({books: searchResults})
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
     }
 
     render() {
         return(
             <div className="container">
                 <Jumbotron/>
-                <Searchbar/>
+                <Searchbar 
+                    handleInputChange={this.handleInputChange} 
+                    searchBook={this.searchBook}
+                />
                 {this.state.books.length ? (
-                    <List>
-                        {this.state.books.map(book => (
-                        <ListItem key={book._id}>
-                            <Book>
-                                <BtnSave onClick={() => this.removeBook(book._id)} />
-                            </Book>
-                        </ListItem>
-                        ))}
-                    </List>
+                    <BookList books={this.state.books}
+                              saveBook={this.saveBook.bind(this)}/>
                 ) : (
                     <h3>No Results to Display</h3>
                 )}

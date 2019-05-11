@@ -5,7 +5,7 @@ const APIKEY = "&AIzaSyDCG1uiAEOdEVv0XeaTOfzoHRANn7JxlGs";
 
 export default {
     search: function(query) {
-        let q=(query).split(" ").join("+");
+        let q = (query).split(" ").join("+");
         return axios.get(BASEURL + q + APIKEY)
     }
 };

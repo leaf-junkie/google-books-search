@@ -1,41 +1,38 @@
 // const ObjectId = require("mongoose").Types.ObjectId;
-const db = require("../models/book");
+const Book = require("../models/book");
 const mongoose = require("mongoose");
 
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
     console.log("hitting books controller")
-      db
+      Book
         .find({ })
-        .then(books => {
-          res.json({ books });
+        .then(dbBooks => {
+          res.json(dbBooks);
         })
         .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-      db
+      Book
         .find({ })
         .then(books => {
-          const book = books.filter(b => b._id.toString() === req.params.id);
+          const book = books.filter(b => b.id.toString() === req.params.id);
           res.json({ book: book[0] });
         })
         .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db
+    Book
       .create(req.body)
       .then(dbBook => {
-        return db.User.findOneAndUpdate({ _id: req.user._id }, { $push: { books: dbBook._id } }, { new: true });
-      })
-      .then((dbUser) => {
-        res.json(dbUser);
+        res.json(dbBook);
       })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+    Book
+      .findOneAndUpdate({ id: req.params.id }, req.body)
       .then(dbModel => {
         console.log(dbModel);
         res.json(dbModel);
@@ -43,12 +40,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.User.findOneAndUpdate({ _id: req.user._id }, { $pull: { books: new ObjectId(req.params.id) } }, { new: true })
-      .then(() => {
-        db.Book
-          .findOneAndDelete({ _id: req.params.id })
-          .then(dbBook => res.json(dbBook))
-          .catch(err => res.status(422).json(err));
-      });
+    // Book.findOneAndUpdate({ $pull: { books: new ObjectId(req.params.id) } }, { new: true })
+    //   .then(() => {
+    //     db.Book
+    //       .findOneAndDelete({ id: req.params.id })
+    //       .then(dbBook => res.json(dbBook))
+    //       .catch(err => res.status(422).json(err));
+    //   });
+    Book
+    .findOneAndDelete({ id: req.params.id })
+    .then(dbBook => res.json(dbBook))
+    .catch(err => res.status(422).json(err))
   }
 };

@@ -1,11 +1,12 @@
 import React from "react";
 
-const BtnRemove = () => {
+const BtnRemove = (props) => {
     return (
         <div className="btnRemove">
             <button 
             type="button" 
-            className="btn btn-outline-danger"
+            className="btn btn-danger"
+            {...props}
             >
             Remove
             </button>

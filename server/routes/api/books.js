@@ -7,7 +7,7 @@ router.route("/books")
     .post(bookController.create);
 
 // Route to books matching specified id
-router.route("/:id")
+router.route("/books/:id")
     .get(bookController.findById)
     .put(bookController.update)
     .delete(bookController.remove);
