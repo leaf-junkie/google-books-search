@@ -40,13 +40,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    // Book.findOneAndUpdate({ $pull: { books: new ObjectId(req.params.id) } }, { new: true })
-    //   .then(() => {
-    //     db.Book
-    //       .findOneAndDelete({ id: req.params.id })
-    //       .then(dbBook => res.json(dbBook))
-    //       .catch(err => res.status(422).json(err));
-    //   });
     Book
     .findOneAndDelete({ id: req.params.id })
     .then(dbBook => res.json(dbBook))

@@ -42,14 +42,16 @@ class SavedPage extends Component {
 
     render() {
         return(
-            <div className="container">
+            <div>
                 <Jumbotron/>
-                {this.state.books.length ? (
-                    <BookList books={this.state.books} removeBook={this.removeBook}/>
-                ) : (
-                    <h3>No Results to Display</h3>
-                )}
-            </div>    
+                <div className="container">
+                    {this.state.books.length ? (
+                        <BookList books={this.state.books} removeBook={this.removeBook}/>
+                    ) : (
+                        <h5>Add some books!</h5>
+                    )}
+                </div>    
+            </div>
         )
     }
 }

@@ -68,19 +68,21 @@ class SearchPage extends Component {
 
     render() {
         return(
-            <div className="container">
+            <div>
                 <Jumbotron/>
-                <Searchbar 
-                    handleInputChange={this.handleInputChange} 
-                    searchBook={this.searchBook}
-                />
-                {this.state.books.length ? (
-                    <BookList books={this.state.books}
-                              saveBook={this.saveBook.bind(this)}/>
-                ) : (
-                    <h3>No Results to Display</h3>
-                )}
-            </div>    
+                <div className="container">
+                    <Searchbar 
+                        handleInputChange={this.handleInputChange} 
+                        searchBook={this.searchBook}
+                    />
+                    {this.state.books.length ? (
+                        <BookList books={this.state.books}
+                                saveBook={this.saveBook.bind(this)}/>
+                    ) : (
+                        <h5>No Results to Display</h5>
+                    )}
+                </div>    
+            </div>
         )
     }
 }
