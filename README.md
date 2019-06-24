@@ -6,9 +6,9 @@ Link to site: https://stark-lowlands-50053.herokuapp.com/
 
 ### Future improvements:
 
-User authentication
+Add user authentication
 
-Include page to display each book in more detail
+Include a page or popup to provide more detail on each book
 
 ---------------------
 
