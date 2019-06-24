@@ -5,7 +5,9 @@ This is a full stack React application that queries the Google Books API when th
 Link to site: https://stark-lowlands-50053.herokuapp.com/
 
 ### Future improvements:
+
 User authentication
+
 Include page to display each book in more detail
 
 ---------------------
