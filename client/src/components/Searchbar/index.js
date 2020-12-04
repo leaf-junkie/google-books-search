@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 function Searchbar(props) {
     return (
@@ -16,12 +17,12 @@ function Searchbar(props) {
                     />
                     <div className="input-group-append">
                         <button 
-                        className="btn btn-primary" 
+                        className="btn btn-light" 
                         type="submit" 
                         id="button-addon2"
                         onClick={ props.searchBook }
                         >
-                        Search
+                            <img src={require("./search-solid.svg")} width="25"></img>
                         </button>
                     </div>
                 </div>

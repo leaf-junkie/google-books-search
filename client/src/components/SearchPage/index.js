@@ -56,8 +56,8 @@ class SearchPage extends Component {
                 book.link = items[i].volumeInfo.infoLink
                 book.title = items[i].volumeInfo.title
                 book.image = (items[i].volumeInfo.imageLinks && items[i].volumeInfo.imageLinks.thumbnail) 
-                ? items[i].volumeInfo.imageLinks.thumbnail 
-                : 'http://placehold.it/300x300'
+                    ? items[i].volumeInfo.imageLinks.thumbnail 
+                    : 'http://placehold.it/300x300'
                 book.description = items[i].volumeInfo.description
                 book.id = items[i].id;
                 searchResults.push(book)

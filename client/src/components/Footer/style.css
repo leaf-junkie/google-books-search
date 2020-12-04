@@ -9,5 +9,9 @@ footer {
 p {
     text-align: center;
     position: relative;
-    padding: 15px;
+    padding: 20px;
+}
+
+p, a {
+    color: #888888;
 }

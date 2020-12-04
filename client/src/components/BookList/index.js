@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import BtnSave from "../BtnSave";
 import BtnRemove from "../BtnRemove";
-import style from "./style.css";
+import "./style.css";
 
 class Book extends Component {
     render() {
@@ -15,10 +15,10 @@ class Book extends Component {
         }
         return (
             <div className="book">
-                <div className="card mb-3" >
+                <div className="card mb-3">
                     <div className="row no-gutters">
                         <div className="col-md-4">
-                        <img src={ book.image } className="card-img" alt={ `Image for ${book.title} not available` }/>
+                            <img src={ book.image } className="card-img" alt={ `Cover for ${book.title}` }/>
                         </div>
                         <div className="col-md-8">
                         <div className="card-body">
