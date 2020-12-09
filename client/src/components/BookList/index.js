@@ -7,6 +7,7 @@ import "./style.css";
 class Book extends Component {
     render() {
         let book = this.props.book;
+        console.log(book)
         let button;
         if (this.props.saveBook) {
             button = <BtnSave onClick={(e) => this.props.saveBook(book, e)} />;
@@ -17,18 +18,20 @@ class Book extends Component {
             <div className="book">
                 <div className="card mb-3">
                     <div className="row no-gutters">
-                        <div className="col-md-4">
+                        <div className="col-4">
                             <img src={ book.image } className="card-img" alt={ `Cover for ${book.title}` }/>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-8">
                         <div className="card-body">
                             <h5 className="card-title">{ book.title }</h5>
                             <p className="card-text"><small className="text-muted">{ book.author }</small></p>
-                            <p className="card-text text-truncate">{ book.description }</p>
-                            <Link to={"/books/" + book.id}>
+                            {/* <p className="card-text text-truncate">{ book.description }</p> */}
+                            <p className="card-text">{ book.description ? book.description.slice(0, 125) + "..." : "Sorry, there is no description available." }</p>
+                            <Link to={book.link} target="_blank">
                                 <p className="card-text"><small className="text-muted">{book.title} by {book.author}</small></p>
+                                <button className="btn btn-info">View More</button>
                             </Link>
-                            {button ? button: <p>There should be a button here</p>}
+                            { button ? button : <p>There should be a button here</p> }
                         </div>
                         </div>
                     </div>
