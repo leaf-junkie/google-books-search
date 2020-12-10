@@ -18,21 +18,20 @@ class Book extends Component {
             <div className="book">
                 <div className="card mb-3">
                     <div className="row no-gutters">
-                        <div className="col-4">
-                            <img src={ book.image } className="card-img" alt={ `Cover for ${book.title}` }/>
+                        <div className="col-4 mt-3">
+                            <img src={ book.image } className="card-img border" alt={ `Cover for ${book.title}` }/>
                         </div>
                         <div className="col-8">
-                        <div className="card-body">
-                            <h5 className="card-title">{ book.title }</h5>
-                            <p className="card-text"><small className="text-muted">{ book.author }</small></p>
-                            {/* <p className="card-text text-truncate">{ book.description }</p> */}
-                            <p className="card-text">{ book.description ? book.description.slice(0, 125) + "..." : "Sorry, there is no description available." }</p>
-                            <Link to={book.link} target="_blank">
-                                <p className="card-text"><small className="text-muted">{book.title} by {book.author}</small></p>
-                                <button className="btn btn-info">View More</button>
-                            </Link>
-                            { button ? button : <p>There should be a button here</p> }
-                        </div>
+                            <div className="card-body">
+                                <h4 className="card-title text-left">{ book.title }</h4>
+                                <p className="card-text text-muted">Written by { book.author }</p>
+                                <p className="card-text">{ book.description ? book.description.slice(0, 125) + "..." : "Oops! We don't have a description for this book." }</p>
+                                {/* <Link to={book.link} target="_blank">
+                                    <p className="card-text"><small className="text-muted">{book.title} by {book.author}</small></p>
+                                </Link> */}
+                                { button ? button : <p>There should be a button here</p> }
+                                <a className="btn btn-light float-left" target="_blank" href={ book.link }>Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
