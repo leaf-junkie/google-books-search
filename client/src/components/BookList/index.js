@@ -7,6 +7,7 @@ import "./style.css";
 class Book extends Component {
     render() {
         let book = this.props.book;
+        console.log(book)
         let button;
         if (this.props.saveBook) {
             button = <BtnSave onClick={(e) => this.props.saveBook(book, e)} />;

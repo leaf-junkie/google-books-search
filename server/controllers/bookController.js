@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
-    console.log("hitting books controller")
       Book
         .find({ })
         .then(dbBooks => {
