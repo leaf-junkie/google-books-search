@@ -5,7 +5,6 @@ const APIKEY = "&AIzaSyDCG1uiAEOdEVv0XeaTOfzoHRANn7JxlGs";
 export default {
   // Gets all books
   getBooks: function() {
-    console.log('hitting api')
     return axios.get("/api/books");
   },
   // Gets the book with the given id

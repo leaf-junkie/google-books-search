@@ -15,7 +15,6 @@ class SearchPage extends Component {
 
     handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(`Name: ${name} Value: ${value}`)
         this.setState({
             [name]: value
         });
@@ -24,9 +23,6 @@ class SearchPage extends Component {
     // Save book
     saveBook = (data, event) => {
         event.preventDefault();
-        console.log("Save book");
-        console.log(this.state);
-        console.log(data);
         API.saveBook({
             title: data.title,
             author: data.author,
@@ -46,7 +42,6 @@ class SearchPage extends Component {
     searchBook = event => {
         event.preventDefault()
         const searchQuery = this.state.query
-        console.log(searchQuery);
         GoogleAPI.search(searchQuery).then(res => {
             const searchResults = []
             let items = res.data.items || [];

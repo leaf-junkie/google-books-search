@@ -1,0 +1,14 @@
+.searchbar {
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.searchbar button {
+    border: 1px solid #ebebeb;
+}
+
+@media screen and (min-width: 575px) {
+    .searchbar {
+        width: 300px;
+    }
+}

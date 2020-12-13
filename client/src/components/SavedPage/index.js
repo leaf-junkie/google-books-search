@@ -20,7 +20,6 @@ class SavedPage extends Component {
         console.log("loading books");
         API.getBooks()
         .then(res => {
-            console.log(res);
             this.setState({ 
                 books: res.data
             });
@@ -31,10 +30,8 @@ class SavedPage extends Component {
     // Remove book based on id
     removeBook = (id, e) => {
         e.preventDefault()
-        console.log(`Remove book: ${id}`);
         API.deleteBook(id)
         .then(res => {
-            console.log(res);
             this.loadBooks()
         })
         .catch(err => console.log(err));
